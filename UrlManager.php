@@ -302,21 +302,6 @@ class UrlManager extends BaseUrlManager
                     }
                 }
 
-                // If we have an absolute URL the length of the host URL has to
-                // be added:
-                //
-                //  - http://www.example.com
-                //  - http://www.example.com?x=y
-                //  - http://www.example.com/foo/bar
-                //
-                if (strpos($url, '://')!==false) {
-                    // Host URL ends at first '/' or '?' after the schema
-                    if (($pos = strpos($url, '/', 8))!==false || ($pos = strpos($url, '?', 8))!==false) {
-                        $insertPos += $pos;
-                    } else {
-                        $insertPos += strlen($url);
-                    }
-                }
                 if ($insertPos > 0) {
                     return substr_replace($url, '/' . $language, $insertPos, 0);
                 } else {
